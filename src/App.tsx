@@ -99,7 +99,10 @@ function App() {
       | React.ChangeEvent<HTMLTextAreaElement>
   ): void {
     if (e.target.name === "image") {
-      setSelectedImage(URL.createObjectURL(e.target.files[0]));
+      const file = e.target as HTMLInputElement;
+      if (file.files) {
+        setSelectedImage(URL.createObjectURL(file.files[0]));
+      }
     } else {
       const value = e.target.value;
 
